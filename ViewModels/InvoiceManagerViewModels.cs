@@ -29,7 +29,7 @@ namespace EasyBillManager.ViewModels
             Invoices = new ObservableCollection<Invoice>();
             SelectedSearchCriteria = SearchCriteriaOptions.FirstOrDefault(); // Sélectionne par défaut le premier critère de recherche
             _invoiceRepository = new InvoiceRepository();
-            LoadInvoicesFromJson();
+            LoadInvoicesFromDb();
         }
         #endregion
 
@@ -84,7 +84,6 @@ namespace EasyBillManager.ViewModels
         {
             "n° de facture", "date", "nom de client", "n° de client"
         };
-
         #endregion
 
         #region Methods
@@ -103,7 +102,7 @@ namespace EasyBillManager.ViewModels
             InvoiceRepository invoiceRepository = new InvoiceRepository();
             if (SelectedSearchCriteria == "n° de facture")
             {
-                Invoices = invoiceRepository.GetByInvoiceNumber(SearchQuery);
+               // Invoices = invoiceRepository.GetByInvoiceNumber(SearchQuery);
             }
             else if (SelectedSearchCriteria == "date")
             {
@@ -111,7 +110,7 @@ namespace EasyBillManager.ViewModels
             }
             else if (SelectedSearchCriteria == "nom de client")
             {
-                Invoices = invoiceRepository.GetByCustomerName(SearchQuery);
+               // Invoices = invoiceRepository.GetByCustomerName(SearchQuery);
             }
             else if (SelectedSearchCriteria == "n° de client")
             {
@@ -120,7 +119,7 @@ namespace EasyBillManager.ViewModels
 
 
         }
-        public void LoadInvoicesFromJson()
+        public void LoadInvoicesFromDb()
         {
             Invoices.Clear();
             InvoiceRepository invoiceRepository = new InvoiceRepository();
