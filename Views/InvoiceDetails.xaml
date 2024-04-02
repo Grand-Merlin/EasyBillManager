@@ -1,0 +1,145 @@
+﻿<Window x:Class="EasyBillManager.Views.InvoiceDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasyBillManager.Views"
+        mc:Ignorable="d"
+        Title="Invoice" Height="800" Width="800">
+    <StackPanel>
+        <Border BorderBrush="Red" BorderThickness="2">
+
+            <StackPanel>
+
+                <!--Details facture-->
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Numéro de facture : "/>
+                    <TextBox x:Name="invoiceNumberTextbox"
+                             Text="{Binding Invoice.InvoiceNumber, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalContentAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Communication VCS"/>
+                    <TextBox Text="Unique auto"
+                     VerticalContentAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Date d'émission"/>
+                    <TextBox Text="{Binding Invoice.InvoiceDate, StringFormat=\{0:dd/MM/yyyy\}}"
+                     VerticalContentAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Date d'échéance"/>
+                    <TextBox Text="comptant par defaut (date du jour)"
+                     VerticalContentAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!--Choix du client-->
+
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Client"/>
+            <ComboBox x:Name="customerCriteriaComboBox"
+                      ItemsSource="{Binding CustomerCriteriaOptions}"
+                      SelectedItem="{Binding SelectedCustomerCriteria, UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox/>
+        </StackPanel>
+
+        <!--information sur l'article-->
+        <Border BorderBrush="Red" BorderThickness="2">
+
+            <StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Article"/>
+                    <ComboBox/>
+                    <ComboBox/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Quantité (1 par défaut)"/>
+                    <TextBox Text="1"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Montant"/>
+                    <TextBox Text="prix unitaire"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Prix total"/>
+                    <TextBox Text="montant*quantité"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Remise optionnelle"/>
+                    <TextBox Text="pourcentage"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Prix apres remise"/>
+                    <TextBox Text="prix total * 0,(100-remise)"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="total HTVA"/>
+                    <TextBox Text="prix total - prix apres remise"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Base impossable"/>
+                    <TextBox Text="prix apres remise"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Taux de TVA"/>
+                    <ComboBox/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Montant TVA correspondant"/>
+                    <TextBox Text="prix apres remise * 0,(Taux TVA)"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Montant TVAC"/>
+                    <TextBox Text="prix apres remise * 1,(Taux TVA)"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Ajouter article"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="Red" BorderThickness="2">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Le total des bases imposable => Montant total HTVA"/>
+                    <TextBox Width="100"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Le Montant total de la TVA"/>
+                    <TextBox Width="100"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Le Montant total TVAC"/>
+                    <TextBox Width="100"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Enregistrer l'ensemble de la transaction"
+                    Margin="10"
+                    Padding="10"/>
+            <Button Content="Generer la facture"
+                    Margin="10"
+                    Padding="10"/>
+        </StackPanel>
+
+    </StackPanel>
+</Window>
